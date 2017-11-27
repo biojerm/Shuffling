@@ -1,7 +1,7 @@
 ## Synopsis
-[DNA shuffling](https://en.wikipedia.org/wiki/DNA_shuffling) is a molecular biology technique used in directed evolution studies.  The technique relies on the similarities between two or more DNA sequences.  This program can be used to increase the similarities between two DNA sequences.  After harmonization the two sequence can be shuffled together and screening for improved properties.    
+[DNA shuffling](https://en.wikipedia.org/wiki/DNA_shuffling) is a molecular biology technique used in directed evolution studies.  The technique relies on the similarities between two or more DNA sequences.  This program can be used to increase the similarities between two DNA sequences.  After harmonization the two sequence can be shuffled together and screened for improved properties.    
 
-This code was inspired by the paper [Shuffle Optimizer: A Program to Optimize DNA Shuffling for Protein Engineering](https://link.springer.com/protocol/10.1007%2F978-1-4939-6343-0_3) written by John N. Milligan and Daniel J. Garry.  However, the code below uses Python 3, and makes a few different codon choices.  On the whole though the outputs should be largely the same.
+This code was inspired by the paper [Shuffle Optimizer: A Program to Optimize DNA Shuffling for Protein Engineering](https://link.springer.com/protocol/10.1007%2F978-1-4939-6343-0_3) written by John N. Milligan and Daniel J. Garry.  However, the code below uses Python 3 and makes a few different codon choices.  On the whole, the outputs should be largely the same.
 
 
 ## Code Example
