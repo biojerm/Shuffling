@@ -16,7 +16,6 @@ python shuffle.py example_sequences.fna
 python shuffle.py example_sequences.fna > output.txt
 ```
 
-
 ## Installation
 
 This program uses the Biopython library. Go [here](http://biopython.org/wiki/Download) for installation instructions before using the script.
