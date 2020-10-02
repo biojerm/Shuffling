@@ -5,37 +5,9 @@ import re
 import difflib
 
 from Bio import SeqIO
-from Bio.Alphabet import IUPAC
 from Bio.SubsMat import MatrixInfo as matlist  # gives us access to blosum62 for alignment
 from Bio import pairwise2  # allows us to do pairwise alignment on our proteins
 from Bio.Seq import Seq
-
-
-def guess_alphabet(seq):
-    """
-    Does not attempt to explicitly deal with weird cases (e.g., ambiguous residues).
-    The user will need to specify an alphabet with the -a flag if using many non-standard characters in their sequences.
-    :param seqbuddy: DNA sequence from SeqIO parser
-    :return: IUPAC alphabet object
-    modified from SeqBuddy _guess_alphabet method Written by Steven Bond
-    https://github.com/biologyguy/BuddySuite
-    """
-    seq = str(seq)
-    if len(seq) == 0:
-        return None
-
-    if 'U' in seq:  # U is unique to RNA
-        return IUPAC.ambiguous_rna
-
-    percent_dna = len(re.findall("[ATCG]", seq)) / float(len(seq))
-    percent_protein = len(re.findall(
-        "[ACDEFGHIKLMNPQRSTVWXY]", seq)) / float(len(seq))
-    if percent_dna > 0.85:  # odds that a sequence with no Us and such a high ATCG count be anything but DNA is low
-        return IUPAC.ambiguous_dna
-    elif percent_protein > 0.85:
-        return IUPAC.protein
-    else:
-        return None
 
 
 def align_with_blosum62(aa_seq1, aa_seq2):
@@ -128,7 +100,7 @@ acid_dic = {
 
 
 def similar_codons(ref_codon, test_codon):
-    test_aa = str(Seq(test_codon, IUPAC.ambiguous_dna).translate())
+    test_aa = str(Seq(test_codon).translate())
     difference_ratio = []
     tested_codons = []
     for codon in acid_dic[test_aa]:
@@ -175,7 +147,6 @@ if __name__ == '__main__':
     # Import files from given name in terminal window, alphabet is also assigned (not currently that useful of a feature)
     with open(sys.argv[1]) as file:
         for seq in SeqIO.parse(file, "fasta"):
-            seq.alphabet = guess_alphabet(seq.seq)
             fa_seq_records.append(seq)
         file.close()
 
