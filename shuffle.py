@@ -5,7 +5,7 @@ import re
 import difflib
 
 from Bio import SeqIO
-from Bio.SubsMat import MatrixInfo as matlist  # gives us access to blosum62 for alignment
+from Bio.Align import PairwiseAligner, substitution_matrices
 from Bio import pairwise2  # allows us to do pairwise alignment on our proteins
 from Bio.Seq import Seq
 
@@ -17,7 +17,8 @@ def align_with_blosum62(aa_seq1, aa_seq2):
 
     # note: depending on the sequence homology it may make sense to use
     # another blosum matrix (or different gap_open gap_close)
-    matrix = matlist.blosum62
+    # matrix = matlist.align_with_blosum62
+    matrix = substitution_matrices.load("BLOSUM62")
     gap_open = -12  # cost to open a gap
     gap_extend = -3  # cost to extend a gap
 
